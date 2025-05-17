@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>开票成功</title>
+  <style>
+    .btn {
+      font-size: 18px;
+      color: #189b74;
+      padding: 12px 24px;
+      border: 1px solid #189b74;
+      border-radius: 5px;
+      background-color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body style="text-align: center; padding: 80px;">
+
+  <h1 style="color: green;">✅ 开票成功</h1>
+  <p>尊敬的纳税人，您可以点击下方按钮下载发票 PDF 文件。</p>
+  <button class="btn" onclick="downloadPDF()">发票下载PDF</button>
+
+  <script>
+    function downloadPDF() {
+      const invoiceNo = "{{ .invoiceNo }}";
+      const url = `/download-pdf/${invoiceNo}`;
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "";
+      link.click();
+    }
+  </script>
+</body>
+</html>
