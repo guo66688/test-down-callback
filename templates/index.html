@@ -1,28 +1,69 @@
-package main
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>开票成功</title>
+  <style>
+    body { text-align: center; padding: 40px; font-family: sans-serif; }
+    .success-icon {
+      font-size: 80px;
+      color: rgb(24, 178, 116);
+    }
+    .title {
+      font-size: 32px;
+      margin: 16px 0;
+    }
+    .desc {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 32px;
+    }
+    .button {
+      font-size: 16px;
+      padding: 10px 24px;
+      margin: 6px;
+      border: none;
+      background-color: #1890ff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .info-box {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .info-box span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="success-icon">
+      ✅
+    </div>
+    <div class="title">开票成功</div>
+    <div class="desc">
+      尊敬的纳税人，您的客户为增值税发票综合服务平台用户，可在税务数字账户中查收此发票。
+    </div>
 
-import (
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"path/filepath"
-)
+    <div class="info-box">
+      <div><span>购方名称：</span>特灵科技（中国）有限公司</div>
+      <div><span>购方税号：</span>91320509MA25T9YC2F</div>
+      <div><span>开票时间：</span>2025-05-14 15:40:39</div>
+      <div><span>价税合计（元）：</span>110,798.50</div>
+      <div><span>发票号码：</span>25952000000093739161</div>
+    </div>
 
-func main() {
-	r := gin.Default()
-	r.LoadHTMLGlob("templates/*")
-
-	// 页面：展示按钮
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"InvoiceNo": "TEST123", // 可用作占位符
-		})
-	})
-
-	// 提供一个固定 PDF 文件供下载
-	r.GET("/download-pdf/:invoiceNo", func(c *gin.Context) {
-		// 实际只返回固定文件
-		filepath := filepath.Join("static", "dummy.pdf")
-		c.FileAttachment(filepath, "downloaded_invoice.pdf")
-	})
-
-	r.Run(":8080")
-}
+    <form method="GET" action="/download-pdf/25952000000093739161">
+      <button type="submit" class="button">发票下载 PDF</button>
+    </form>
+  </div>
+</body>
+</html>

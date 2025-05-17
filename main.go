@@ -8,24 +8,20 @@ import (
 
 func main() {
 	r := gin.Default()
-
-	// 静态资源目录
-	r.Static("/static", "./static")
 	r.LoadHTMLGlob("templates/*")
 
-	// 模拟发票页面
+	// 页面：展示按钮
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "invoice.html", gin.H{
-			"invoiceNo": "25952000000093739161",
+		c.HTML(http.StatusOK, "index.html", gin.H{
+			"InvoiceNo": "TEST123", // 可用作占位符
 		})
 	})
 
-	// 模拟下载接口
+	// 提供一个固定 PDF 文件供下载
 	r.GET("/download-pdf/:invoiceNo", func(c *gin.Context) {
-		invoiceNo := c.Param("invoiceNo")
-		filename := invoiceNo + "_发票.pdf"
-		filepath := filepath.Join("static", filename)
-		c.FileAttachment(filepath, filename)
+		// 实际只返回固定文件
+		filepath := filepath.Join("static", "dummy.pdf")
+		c.FileAttachment(filepath, "downloaded_invoice.pdf")
 	})
 
 	r.Run(":8080")
