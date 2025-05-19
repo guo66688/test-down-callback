@@ -61,9 +61,17 @@
       <div><span>发票号码：</span>25952000000093739161</div>
     </div>
 
-    <form method="GET" action="/download-pdf/25952000000093739161">
-      <button type="submit" class="button">发票下载 PDF</button>
-    </form>
+    <div class="electronic-file electron-group">
+      <form method="GET" action="/download-pdf/25952000000093739161" style="display: inline;">
+        <button type="submit" class="t-button t-button--variant-text t-button--theme-primary">
+          <svg class="electronic-file__icon t-icon t-icon-file-pdf">
+            <use href="#t-icon-file-pdf"></use>
+          </svg>
+          <span class="t-button__text">发票下载PDF</span>
+        </button>
+      </form>
+    </div>
+
   </div>
 </body>
 </html>
